@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="description" content="Coding Dojo Python/Django Semi-Restful Routes assignment">
+	{% load staticfiles %}
+	<title>Semi-Restful Routes</title>
+	<link rel="stylesheet" href="{% static 'semirest/css/css_boilerplate.css' %}" media="screen">
+	<style media="screen">
+		ul {
+			list-style-type: none;
+		}
+		li {
+			display: inline-block;
+			vertical-align: top;
+		}
+		li::after {
+			content: ' |';
+		}
+		ul li:last-child::after {
+			content: none;
+		}
+		div {
+			margin: 10px 20px;
+		}
+		p {
+			display: inline-block;
+			vertical-align: top;
+			margin: 5px 0;
+		}
+	</style>
+</head>
+<body>
+	<main class="eighty">
+		<h1>Product {{ product.id }}</h1>
+		<div class="ninety center">
+			<p class="twenty">Name:</p>
+			<p class="seventy">{{ product.name }}</p>
+			<p class="twenty">Description:</p>
+			<p class="seventy">{{ product.description }}</p>
+			<p class="twenty" for="price">Price</p>
+			<p class="seventy">$ {{ product.price }}</p>
+		</div>
+		<ul>
+			<li><a href="{% url 'semirest:edit' id=product.id %}">Edit</a></li>
+			<li><a href="{% url 'semirest:index' %}">Go Back</a></li>
+		</ul>
+	</main>
+</body>
+</html>

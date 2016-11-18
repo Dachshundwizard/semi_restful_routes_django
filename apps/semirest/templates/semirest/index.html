@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="description" content="Coding Dojo Python/Django Semi-Restful Routes assignment">
+	{% load staticfiles %}
+	<title>Semi-Restful Routes</title>
+	<link rel="stylesheet" href="{% static 'semirest/css/css_boilerplate.css' %}" media="screen">
+	<style media="screen">
+		ul {
+			list-style-type: none;
+		}
+		li {
+			display: inline-block;
+			vertical-align: top;
+		}
+		li::after {
+			content: ' |';
+		}
+		ul li:last-child::after {
+			content: none;
+		}
+	</style>
+</head>
+<body>
+	<main class="eighty">
+		<h1>Products</h1>
+		<table class="ninety center">
+			<thead>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Price</th>
+				<th>Actions</th>
+			</thead>
+			{% for product in products %}
+				<tr>
+					<td>{{ product.name }}</td>
+					<td>{{ product.description }}</td>
+					<td>$ {{ product.price }}</td>
+					<td>
+						<ul>
+							<li><a href="{% url 'semirest:show' id=product.id %}">Show</a></li>
+							<li><a href="{% url 'semirest:edit' id=product.id %}">Edit</a></li>
+							<li><a href="{% url 'semirest:destroy' id=product.id %}">Remove</a></li>
+						</ul>
+					</td>
+				</tr>
+			{% endfor %}
+		</table>
+		<a href="{% url 'semirest:new' %}">Add a new product</a>
+	</main>
+</body>
+</html>
